@@ -204,7 +204,7 @@ local function menu_open()
     ["o"] = [[<nop>]],
     ["i"] = [[<nop>]],
     ["c"] = [[<nop>]],
-    ["e"] = menu_select_item,
+  -- ["e"] = menu_select_item,
     ["q"] = menu_close,
     ["<C-c>"] = menu_close,
     ["<ESC>"] = menu_close,
