@@ -205,11 +205,11 @@ local function menu_open()
   local win, buf = create_float()
 
   for k, v in pairs({
-    ["a"] = [[<nop>]],
-    ["o"] = [[<nop>]],
-    ["i"] = [[<nop>]],
-    ["c"] = [[<nop>]],
-    ["e"] = [[<nop>]],
+    -- ["a"] = [[<nop>]],
+    -- ["o"] = [[<nop>]],
+    -- ["i"] = [[<nop>]],
+    -- ["c"] = [[<nop>]],
+    -- ["e"] = [[<nop>]],
   -- ["e"] = menu_select_item,
     ["q"] = menu_close,
     ["<C-c>"] = menu_close,
