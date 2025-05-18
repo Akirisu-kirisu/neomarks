@@ -29,9 +29,14 @@ local function path_sep()
 end
 
 local function make_absolute(path)
-  local cwd = uv.cwd() .. path_sep()
-  path = cwd .. path
-  return path
+	-- Check if the path is already absolute
+	if path:sub(1, 1) == "/" then
+		return path
+	else
+		-- If not absolute, prepend the current working directory
+		local cwd = uv.cwd() .. path_sep()
+		return cwd .. path
+	end
 end
 
 local function make_relative(path)
@@ -204,6 +209,7 @@ local function menu_open()
     ["o"] = [[<nop>]],
     ["i"] = [[<nop>]],
     ["c"] = [[<nop>]],
+    ["e"] = [[<nop>]],
   -- ["e"] = menu_select_item,
     ["q"] = menu_close,
     ["<C-c>"] = menu_close,
