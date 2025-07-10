@@ -260,10 +260,18 @@ function M.mark_file()
     Marks = storage_get()
   end
   local mark = mark_get()
+  -- if mark then
+  --   return
+  -- end
   if mark then
-    return
+    -- Update position instead
+    mark.pos = vim.api.nvim_win_get_cursor(0)
+    vim.notify("Mark updated.", vim.log.levels.INFO)
+  else
+    table.insert(Marks, mark_new())
+    vim.notify("New mark created.", vim.log.levels.INFO)
   end
-  table.insert(Marks, mark_new())
+  -- table.insert(Marks, mark_new())
 end
 
 function M.menu_toggle()
