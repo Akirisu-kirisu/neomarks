@@ -286,16 +286,47 @@ function M.menu_toggle()
   end
 end
 
+-- local function open_path(path)
+--   if path:match("^oil://") then
+--     vim.cmd("Oil " .. vim.fn.fnameescape(path.file))
+--   else
+--     mark_follow(path)
+--   end
+-- end
+-- function M.jump_to(idx)
+--   if Options.git_branch then
+--     Marks = storage_get()
+--   end
+--   mark_update_current_pos()
+--   local mark = Marks[idx]
+--   if not mark then
+--     return
+--   end
+--   -- mark_follow(mark)
+--   open_path(mark)
+-- end
+local function open_path(mark)
+  local path = mark.file or mark
+
+  local oil_uri = path:match("oil://.*")
+  if oil_uri then
+    vim.cmd("Oil " .. vim.fn.fnameescape(oil_uri))
+  else
+    mark_follow(mark)
+  end
+end
+
 function M.jump_to(idx)
   if Options.git_branch then
     Marks = storage_get()
   end
   mark_update_current_pos()
+
   local mark = Marks[idx]
   if not mark then
     return
   end
-  mark_follow(mark)
+  open_path(mark)
 end
 
 return M
